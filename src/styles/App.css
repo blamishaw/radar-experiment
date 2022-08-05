@@ -14,7 +14,7 @@
 .banner {
     grid-area: banner;
     margin: 0;
-    font-size: 40px;
+    font-size: 80px;
     font-weight: bold;
     color: #347FF6;
     padding: 0;
@@ -46,8 +46,7 @@ input[type=text], .search-btn {
 }
 
 .search-btn {
-    padding: 1.4em;
-    padding-bottom: 1.5em;
+    padding: 1.3em;
     background-color: #347FF6;
     border-radius: 10px;
     border: none;
@@ -55,6 +54,25 @@ input[type=text], .search-btn {
     color: white;
     font-size: 18px;
     margin: 0;
+}
+
+.search-suggestion-dropdown {
+    width: 32.2rem;
+    margin: 0 20px;
+    padding: 0;
+    background-color: white;
+    border-radius: 0px 0px 10px 10px;
+    border: 1px solid #DBE1E8;
+    border-top: none;
+    list-style-type: none;
+}
+
+.search-suggestion {
+    padding: 15px;
+}
+
+.search-suggestion:hover {
+    background-color: #F8F9FC;
 }
 
 /* Styles for Map component */
@@ -65,6 +83,7 @@ input[type=text], .search-btn {
 }
 
 #map {
-    height: 48em;
+    height: 47em;
     width: auto;
+    border-radius: 10px;
 }
