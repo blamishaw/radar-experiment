@@ -28,8 +28,8 @@
 }
 
 .banner-text {
-    font-size: 80px;
-    font-weight: 400;
+    font-size: 50px;
+    font-weight: 800;
     color: #347FF6;
 }
 
@@ -56,6 +56,10 @@ input[type=text] {
 
 input[type=text], .search-btn {
     line-height: 28px;;
+}
+
+input[type=text]:disabled, .search-btn:disabled{
+    opacity: 70%;
 }
 
 .search-btn {
@@ -94,6 +98,12 @@ input[type=text], .search-btn {
 .search-error {
     color: red;
     font-weight: 800;
+}
+
+.search-loading {
+    color: #347FF6;
+    height: 80;
+    width: 80;
 }
 
 /* Styles for Map component */
