@@ -1,0 +1,70 @@
+.container {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-rows: 1fr 5fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "banner banner"
+        "search map";
+}
+
+
+/* Styles for Banner component */
+.banner {
+    grid-area: banner;
+    margin: 0;
+    font-size: 40px;
+    font-weight: bold;
+    color: #347FF6;
+    padding: 0;
+}
+
+/* Styles for SearchBar component */
+.searchbar-area {
+    grid-area: search;
+    margin: 5em auto;
+    align-items: center;
+}
+
+.search-input {
+    width: 30rem;
+    height: 4em;
+    border-radius: 10px;
+    border: 1px solid #DBE1E8;
+    outline: none;
+    margin: 0 20px;
+}
+
+input[type=text] {
+    padding: 0.2em 1em;
+    font-size: 18px;
+}
+
+input[type=text], .search-btn {
+    line-height: 28px;;
+}
+
+.search-btn {
+    padding: 1.4em;
+    padding-bottom: 1.5em;
+    background-color: #347FF6;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 18px;
+    margin: 0;
+}
+
+/* Styles for Map component */
+.map-area {
+    grid-area: map;
+    padding: 0;
+
+}
+
+#map {
+    height: 48em;
+    width: auto;
+}
