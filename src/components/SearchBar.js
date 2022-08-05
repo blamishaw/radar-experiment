@@ -7,29 +7,36 @@ const SearchBar = () => {
 
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [suggestions, setSuggestions] = useState([]);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const inputText = e.target[0].value.trim().toLowerCase();
-        if (categories.findIndex((category) => category === inputText) === -1) {
-            console.log("cant find");
+        if (inputText && categories.findIndex((category) => category === inputText) === -1) {
+            setErrorMessage(`Can't find category "${inputText}"`);
         }
-        console.log(inputText)
+
+        // TODO: Call axios with API 
+        console.log(inputText);
+    }
+
+    const handleClickCategory = (suggestion) => {
+        inputRef.current.value = suggestion
+        setShowSuggestions(false);
     }
 
     const handleChange = (e) => {
+        setErrorMessage("");
         const inputText = e.target.value.trim().toLowerCase();
         if (inputText.length > 0) {
             let newSuggestions = [];
 
             // Store categories and the order in which the substring is found
             // We do this so that suggestions are returned alphabetically
-            for (const category of categories) {
-                // No need to offer more than 6 suggestions
-                if (newSuggestions.length > 6) { break; }
+            categories.forEach((category) =>  {
                 const idx = category.indexOf(inputText)
                 if (idx > -1) { newSuggestions.push([idx, category ])};
-            };
+            });
             newSuggestions.sort((a, b) => a[0] > b[0]);
             setSuggestions(newSuggestions.map((suggestion) => suggestion[1]));
             setShowSuggestions(true);
@@ -45,10 +52,11 @@ const SearchBar = () => {
                 <button className="search-btn">Search Events</button>
                 {showSuggestions && 
                     <ul className="search-suggestion-dropdown">
-                        {suggestions.map((suggestion) => <li className="search-suggestion" onClick={() => inputRef.current.value = suggestion}>{suggestion}</li>)}
+                        {suggestions.map((suggestion) => <li className="search-suggestion" onClick={() => handleClickCategory(suggestion)}>{suggestion}</li>)}
                     </ul>
                 }
             </form>
+            {errorMessage && <h3 className="search-error">{errorMessage}</h3>}
         </div>
     );
 }

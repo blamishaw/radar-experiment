@@ -2,7 +2,11 @@ import "../styles/App.css";
 
 const Banner = () => {
     return (
-        <header className="banner">Banner</header>
+        <div className="banner-area">
+            <img className="banner-icon" src="/assets/radar.png" />
+            <span className="banner-text">Radar</span>
+        </div>
+        
     );
 };
 

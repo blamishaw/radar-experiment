@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
 .container {
     display: grid;
     width: 100%;
@@ -7,17 +9,28 @@
     grid-template-areas: 
         "banner banner"
         "search map";
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
 /* Styles for Banner component */
-.banner {
+.banner-area {
     grid-area: banner;
     margin: 0;
-    font-size: 80px;
-    font-weight: bold;
-    color: #347FF6;
     padding: 0;
+    display: inline-block;
+}
+
+.banner-icon {
+    width: 100px;
+    height: 100px;
+    line-height: 20px;
+}
+
+.banner-text {
+    font-size: 80px;
+    font-weight: 400;
+    color: #347FF6;
 }
 
 /* Styles for SearchBar component */
@@ -59,12 +72,15 @@ input[type=text], .search-btn {
 .search-suggestion-dropdown {
     width: 32.2rem;
     margin: 0 20px;
+    max-height: 30em;
     padding: 0;
     background-color: white;
     border-radius: 0px 0px 10px 10px;
     border: 1px solid #DBE1E8;
     border-top: none;
     list-style-type: none;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: auto;
 }
 
 .search-suggestion {
@@ -73,6 +89,11 @@ input[type=text], .search-btn {
 
 .search-suggestion:hover {
     background-color: #F8F9FC;
+}
+
+.search-error {
+    color: red;
+    font-weight: 800;
 }
 
 /* Styles for Map component */
