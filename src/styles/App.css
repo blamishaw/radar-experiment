@@ -118,3 +118,10 @@ input[type=text]:disabled, .search-btn:disabled{
     width: auto;
     border-radius: 10px;
 }
+
+.map-event-card {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position: absolute;
+}
