@@ -20,6 +20,6 @@ REACT_APP_GOOGLE_MAPS_API_KEY=<your_google_maps_api_key>
 REACT_APP_RADAR_API_KEY=<your_radar_api_key>
 ```
 
-
-
+## Example
+<img width="1680" alt="Screen Shot 2022-08-07 at 12 58 43 PM" src="https://user-images.githubusercontent.com/52175208/183304678-88d1b975-32d3-4299-ad73-8549f8242203.png">
 
