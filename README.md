@@ -21,5 +21,6 @@ REACT_APP_RADAR_API_KEY=<your_radar_api_key>
 ```
 
 ## Example
-<img width="1680" alt="Screen Shot 2022-08-07 at 12 58 43 PM" src="https://user-images.githubusercontent.com/52175208/183304678-88d1b975-32d3-4299-ad73-8549f8242203.png">
+<img width="1680" alt="Screen Shot 2022-08-07 at 1 21 14 PM" src="https://user-images.githubusercontent.com/52175208/183305414-92984fa1-62f8-4a00-8b19-a23e7c6ae68b.png">
+
 
