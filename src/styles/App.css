@@ -20,6 +20,7 @@
     margin: 0;
     padding: 0;
     display: inline-block;
+    box-shadow: 0 4px 5px -2px gray;
 }
 
 .banner-icon {
@@ -32,6 +33,23 @@
     font-size: 50px;
     font-weight: 800;
     color: #347FF6;
+}
+
+.fa-github {
+    margin-left: 0.01em;
+    width: 100px;
+    height: 100px;
+    top: 30px;
+    left: 100px;
+    line-height:90px;
+    text-align: center;
+    vertical-align: middle;
+    color: #347FF6;
+
+}
+
+.fa-github:hover {
+    cursor: pointer;
 }
 
 /* Styles for SearchBar component */

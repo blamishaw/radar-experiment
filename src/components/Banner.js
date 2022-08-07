@@ -5,6 +5,7 @@ const Banner = () => {
         <div className="banner-area">
             <img className="banner-icon" src="/assets/radar.png" />
             <span className="banner-text">Product Engineer Interview</span>
+            <span className="fa fa-github fa-2x" onClick={() => window.location.href = "https://github.com/blamishaw/radar-interview"}></span>
         </div>
         
     );
