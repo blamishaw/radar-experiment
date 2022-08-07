@@ -16,7 +16,7 @@ const SearchBar = ({ setEventPayload }) => {
     useEffect(() => {
         if (searchCategory) {
             setFetchingData(true);
-            fetch(`https://api.radar.io/v1/events?types=user.entered_place&placeCategories=restaurant`, {
+            fetch(`https://api.radar.io/v1/events?types=user.entered_place&placeCategories=restaurants`, {
                 headers: {
                     'Authorization': process.env.REACT_APP_RADAR_API_KEY
                 }
@@ -70,6 +70,7 @@ const SearchBar = ({ setEventPayload }) => {
     return (
         <div className="searchbar-area">
             <form className="search-form" onSubmit={handleSubmit}>
+                <span className="fa fa-search"></span>
                 <input className="search-input" disabled={fetchingData} type="text" placeholder="Enter a Category" onChange={handleChange} ref={inputRef}></input>
                 <button disabled={fetchingData} className="search-btn">Search Events</button>
                 {showSuggestions && 
@@ -79,7 +80,7 @@ const SearchBar = ({ setEventPayload }) => {
                 }
             </form>
             {errorMessage && <h3 className="search-error">{errorMessage}</h3>}
-            {fetchingData && <ThreeDots color="#347FF6" width={80} height={80}/>}
+            {fetchingData && <ThreeDots className="search-loading" color="#347FF6" width={80} height={80}/>}
         </div>
     );
 }

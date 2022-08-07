@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
 .container {
     display: grid;
@@ -40,8 +41,24 @@
     align-items: center;
 }
 
+.search-form {
+    position: relative;
+}
+
+.fa-search {
+    left: 200px;
+    opacity: 0.4;
+}
+
+.search-form .fa-search { 
+    position: absolute;
+    top: 30px;
+    left: 40px;
+  }
+
+
 .search-input {
-    width: 30rem;
+    width: 25rem;
     height: 4em;
     border-radius: 10px;
     border: 1px solid #DBE1E8;
@@ -50,7 +67,7 @@
 }
 
 input[type=text] {
-    padding: 0.2em 1em;
+    padding: 0.2em 3em;
     font-size: 18px;
 }
 
@@ -74,7 +91,7 @@ input[type=text]:disabled, .search-btn:disabled{
 }
 
 .search-suggestion-dropdown {
-    width: 32.2rem;
+    width: 32rem;
     margin: 0 20px;
     max-height: 30em;
     padding: 0;
@@ -101,9 +118,7 @@ input[type=text]:disabled, .search-btn:disabled{
 }
 
 .search-loading {
-    color: #347FF6;
-    height: 80;
-    width: 80;
+    padding: 10em;
 }
 
 /* Styles for Map component */
@@ -117,11 +132,4 @@ input[type=text]:disabled, .search-btn:disabled{
     height: 47em;
     width: auto;
     border-radius: 10px;
-}
-
-.map-event-card {
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    position: absolute;
 }
