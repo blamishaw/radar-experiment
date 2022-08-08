@@ -1,27 +1,29 @@
 import { useEffect, useState } from "react";
+import { getStreetAddress } from "../utils/geocoding";
 
 const MapMarker = (options) => {
     const [marker, setMarker] = useState();
+    const [streetAddress, setStreetAddress] = useState("");
 
-    const contentString = `
-      <div>
-        <img src='/assets/restaurant.png' />
-        <h1>${options.name}</h1>
-        <h4>335 W 14th St</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam varius imperdiet nunc eget maximus. Fusce mollis, ligula vitae tincidunt vulputate, metus quam bibendum turpis, sit amet consectetur neque massa eget justo. Maecenas volutpat nunc at erat laoreet rutrum. Phasellus luctus orci vel ipsum consectetur efficitur.</p>
-      </div>
-    
-    `;
     const infoWindow = new window.google.maps.InfoWindow({
-      content: contentString,
+      content: "",
       maxWidth: 300,
     })
-    
   
     useEffect(() => {
       if (!marker) {
         setMarker(new window.google.maps.Marker());
       }
+      getStreetAddress(options.position.lat, options.position.lng, setStreetAddress);
+      const contentString = `
+          <div>
+            <img src='/assets/restaurant.png' />
+            <h1>${options.name}</h1>
+            <h4>${streetAddress}</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam varius imperdiet nunc eget maximus. Fusce mollis, ligula vitae tincidunt vulputate, metus quam bibendum turpis, sit amet consectetur neque massa eget justo. Maecenas volutpat nunc at erat laoreet rutrum. Phasellus luctus orci vel ipsum consectetur efficitur.</p>
+          </div>
+        `;
+      infoWindow.setContent(contentString);
   
       // remove marker from map on unmount
       return () => {
