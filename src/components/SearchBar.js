@@ -93,7 +93,11 @@ const SearchBar = ({ setEventPayload }) => {
             <form className="search-form" onSubmit={handleSubmit}>
                 <span className="fa fa-search"></span>
                 <input className="search-input" disabled={fetchingData} type="text" placeholder="Enter a Category" onChange={handleChange} ref={inputRef}></input>
-                <button disabled={fetchingData} className="search-btn"><span className="fa fa-home"></span>     Search Places</button>
+                <button disabled={fetchingData} className="search-btn">
+                    <span className="fa fa-home"></span>
+                    <span className='search-btn-long-text'>Search Places</span>
+                    <span className='search-btn-short-text'>Search</span>
+                </button>
                 {showSuggestions && 
                     <ul className="search-suggestion-dropdown">
                         {suggestions.map((suggestion, idx) => <li key={idx} className="search-suggestion" onClick={() => handleClickCategory(suggestion)}>{suggestion}</li>)}

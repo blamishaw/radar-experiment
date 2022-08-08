@@ -7,6 +7,9 @@ import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import MapMarker from "./MapMarker";
 import "../styles/App.css";
 
+const MANHATTAN_COORDS = { lat: 40.741895, lng: -73.989308 };
+const INITIAL_ZOOM = 13;
+
 const MapWrapper = ({ eventPayload }) => {
 
     const render = (status) => {
@@ -16,7 +19,7 @@ const MapWrapper = ({ eventPayload }) => {
     return (
         <div className="map-area">
             <Wrapper apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} render={render}>
-                <Map zoom={13} center={{ lat: 40.741895, lng: -73.989308 }}>
+                <Map zoom={INITIAL_ZOOM} center={MANHATTAN_COORDS}>
                     {eventPayload?.events && eventPayload.events.map((payload, idx) => {
                         if (payload.place && payload.place.name) {
                             return <MapMarker 
