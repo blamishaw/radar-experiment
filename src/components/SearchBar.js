@@ -1,30 +1,41 @@
 import { useEffect, useRef, useState } from 'react';
-import { categories } from '../data/categories';
+import { getFlattenedCategories } from '../data/categories';
 import { ThreeDots } from 'react-loader-spinner';
 import "../styles/App.css";
 
 const SearchBar = ({ setEventPayload }) => {
     const inputRef = useRef("");
 
+    const [categories, setCategories] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [suggestions, setSuggestions] = useState([]);
     const [errorMessage, setErrorMessage] = useState("");
     const [searchCategory, setSearchCategory] = useState(null);
     const [fetchingData, setFetchingData] = useState(false);
 
+    useEffect(() => {
+        console.log("fetching categories");
+        setCategories(getFlattenedCategories());
+    }, []);
+
     // Call Radar API to fetch events with the user specified category
     useEffect(() => {
         if (searchCategory) {
             setFetchingData(true);
-            fetch(`https://api.radar.io/v1/events?types=user.entered_place&placeCategories=restaurants`, {
+            fetch(`https://api.radar.io/v1/events?types=user.entered_place&placeCategories=${searchCategory}`, {
                 headers: {
                     'Authorization': process.env.REACT_APP_RADAR_API_KEY
                 }
             })
             .then(res => res.json())
             .then(data => {
-                setEventPayload(data);
+                if (data.events.length === 0) {
+                    setErrorMessage("No locations found!")
+                } else {
+                    setEventPayload(data);
+                }
                 setFetchingData(false);
+                
             })
             .catch(err => console.log(err))
         }
@@ -33,12 +44,14 @@ const SearchBar = ({ setEventPayload }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const inputText = e.target[0].value.trim().toLowerCase();
+        setErrorMessage("");
+        // Clean input
+        const inputText = e.target[0].value.trim().toLowerCase().replace(/ /g, "-");
         if (inputText && categories.findIndex((category) => category === inputText) === -1) {
             setErrorMessage(`Can't find category "${inputText}"`);
         } else {
             // Replace spaces with hyphen
-            setSearchCategory(inputText.replace(/ /g, "-"));
+            setSearchCategory(inputText);
         }
     }
 
@@ -55,12 +68,18 @@ const SearchBar = ({ setEventPayload }) => {
 
             // Store categories and the order in which the substring is found
             // We do this so that suggestions are returned alphabetically
-            categories.forEach((category) =>  {
+            for (let category of categories) {
                 const idx = category.indexOf(inputText)
-                if (idx > -1) { newSuggestions.push([idx, category ])};
-            });
+                if (idx > -1) { newSuggestions.push([idx, category])};
+            };
+            // Sort the suggestions so that they are intuitively in alphabetical order
+            // This is fine since we only have a limited number of categories, but would want to find a more efficient way
+            // to do this in the future
             newSuggestions.sort((a, b) => a[0] > b[0]);
-            setSuggestions(newSuggestions.map((suggestion) => suggestion[1]));
+            const sortedSuggestions = newSuggestions.map((suggestion) => suggestion[1].replace(/-/g, ' '));
+
+            // Only display 10 suggestions
+            setSuggestions(sortedSuggestions.slice(0, 10));
             setShowSuggestions(true);
         } else {
             setShowSuggestions(false);
