@@ -3,6 +3,8 @@ import { getFlattenedCategories } from '../data/categories';
 import { ThreeDots } from 'react-loader-spinner';
 import "../styles/App.css";
 
+const MAX_SUGGESTIONS = 10;
+
 const SearchBar = ({ setEventPayload }) => {
     const inputRef = useRef("");
 
@@ -79,7 +81,7 @@ const SearchBar = ({ setEventPayload }) => {
             const sortedSuggestions = newSuggestions.map((suggestion) => suggestion[1].replace(/-/g, ' '));
 
             // Only display 10 suggestions
-            setSuggestions(sortedSuggestions.slice(0, 10));
+            setSuggestions(sortedSuggestions.slice(0, MAX_SUGGESTIONS));
             setShowSuggestions(true);
         } else {
             setShowSuggestions(false);
@@ -91,7 +93,7 @@ const SearchBar = ({ setEventPayload }) => {
             <form className="search-form" onSubmit={handleSubmit}>
                 <span className="fa fa-search"></span>
                 <input className="search-input" disabled={fetchingData} type="text" placeholder="Enter a Category" onChange={handleChange} ref={inputRef}></input>
-                <button disabled={fetchingData} className="search-btn">Search Places</button>
+                <button disabled={fetchingData} className="search-btn"><span className="fa fa-home"></span>     Search Places</button>
                 {showSuggestions && 
                     <ul className="search-suggestion-dropdown">
                         {suggestions.map((suggestion, idx) => <li key={idx} className="search-suggestion" onClick={() => handleClickCategory(suggestion)}>{suggestion}</li>)}

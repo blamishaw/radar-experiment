@@ -111,6 +111,7 @@ input[type=text]:disabled, .search-btn:disabled{
 .search-btn:hover {
     background-color: #9ec0f7;
     color: #347FF6;
+    cursor: pointer;
 }
 
 .search-suggestion-dropdown {
