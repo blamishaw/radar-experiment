@@ -28,6 +28,7 @@ https://user-images.githubusercontent.com/52175208/183508255-2ffeef48-5007-4732-
 
 ## Todo:
 [x] Add geocoding interface to map lat/long to street address
+
 [x] Cache API responses in `sessionStorage` to avoid making extraneous calls
 
 
