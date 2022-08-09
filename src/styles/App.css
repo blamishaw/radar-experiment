@@ -168,11 +168,15 @@ input[type=text]:disabled, .search-btn:disabled{
 .map-area {
     grid-area: map;
     padding: 0;
-
 }
 
 #map {
     height: 47em;
     width: auto;
     border-radius: 10px;
+}
+
+.map-card-img {
+    width: 100px;
+    height: 60px;
 }

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { getFlattenedCategories } from '../data/categories';
 import { ThreeDots } from 'react-loader-spinner';
+import { callRadarAPI } from '../utils/utils';
 import "../styles/App.css";
 
 const MAX_SUGGESTIONS = 10;
@@ -23,27 +24,11 @@ const SearchBar = ({ setEventPayload }) => {
     // Call Radar API to fetch events with the user specified category
     useEffect(() => {
         if (searchCategory) {
-            setFetchingData(true);
-            fetch(`https://api.radar.io/v1/events?types=user.entered_place&placeCategories=${searchCategory}`, {
-                headers: {
-                    'Authorization': process.env.REACT_APP_RADAR_API_KEY
-                }
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.events.length === 0) {
-                    setErrorMessage("No locations found!")
-                } else {
-                    setEventPayload(data);
-                }
-                setFetchingData(false);
-                
-            })
-            .catch(err => console.log(err))
+            callRadarAPI(searchCategory, { setFetchingData, setErrorMessage, setEventPayload });
         }
-        
     }, [searchCategory]);
 
+    // Set searchTerm on submit
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrorMessage("");
@@ -57,6 +42,7 @@ const SearchBar = ({ setEventPayload }) => {
         }
     }
 
+    // Set input text field when clicking a suggested category
     const handleClickCategory = (suggestion) => {
         inputRef.current.value = suggestion
         setShowSuggestions(false);
@@ -76,11 +62,11 @@ const SearchBar = ({ setEventPayload }) => {
             };
             // Sort the suggestions so that they are intuitively in alphabetical order
             // This is fine since we only have a limited number of categories, but would want to find a more efficient way
-            // to do this in the future
+            // to do this in the future as category count grows
             newSuggestions.sort((a, b) => a[0] > b[0]);
             const sortedSuggestions = newSuggestions.map((suggestion) => suggestion[1].replace(/-/g, ' '));
 
-            // Only display 10 suggestions
+            // Only display MAX_SUGGESTIONS suggestions
             setSuggestions(sortedSuggestions.slice(0, MAX_SUGGESTIONS));
             setShowSuggestions(true);
         } else {

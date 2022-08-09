@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { getStreetAddress } from "../utils/geocoding";
 
 const MapMarker = (options) => {
     const [marker, setMarker] = useState();
-    const [streetAddress, setStreetAddress] = useState("");
 
     const infoWindow = new window.google.maps.InfoWindow({
       content: "",
@@ -14,12 +12,12 @@ const MapMarker = (options) => {
       if (!marker) {
         setMarker(new window.google.maps.Marker());
       }
-      getStreetAddress(options.position.lat, options.position.lng, setStreetAddress);
+      // HTML to be displayed when user hovers over marker
       const contentString = `
           <div>
-            <img src='/assets/restaurant.png' />
+            <img src='/assets/restaurant.png' className="map-card-img"/>
             <h1>${options.name}</h1>
-            <h4>${streetAddress}</h4>
+            <h4>${options.streetAddress}</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam varius imperdiet nunc eget maximus. Fusce mollis, ligula vitae tincidunt vulputate, metus quam bibendum turpis, sit amet consectetur neque massa eget justo. Maecenas volutpat nunc at erat laoreet rutrum. Phasellus luctus orci vel ipsum consectetur efficitur.</p>
           </div>
         `;

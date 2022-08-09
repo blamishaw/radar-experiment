@@ -27,6 +27,7 @@ const MapWrapper = ({ eventPayload }) => {
                                         position={{ lng: payload.location.coordinates[0], lat: payload.location.coordinates[1] }}
                                         animation={window.google.maps.Animation.DROP}
                                         name={payload.place.name}
+                                        streetAddress={payload.location.streetAddress}
                                     />
                             }
                         } 
