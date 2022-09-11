@@ -1,6 +1,6 @@
-# Product Engineer Interview @ Radar
+# Testing Geolocation Services using the Radar API
 
-Prompt for interview [here](https://www.notion.so/radarlabs/Event-map-Product-Engineer-homework-acbe78fe7a0e46fc9893d58896636a82).
+API Docs [here](https://radar.com/documentation/api).
 
 This site was built using React and interfaces with the Google Maps API using the npm package `@googlemaps/react-wrapper`. You can create a GCP project and get a Google Maps API key [here](https://developers.google.com/maps).
 
@@ -15,17 +15,10 @@ The site can then be spun up by running the following commands:
 
 ```
 git clone https://github.com/blamishaw/radar-interview.git
-cd radar-interview
+cd radar-experiment
 npm install
 npm start
 ```
-
-## Example
-
-https://user-images.githubusercontent.com/52175208/183508255-2ffeef48-5007-4732-8fe0-16568a74f21c.mov
-
-
-
 ## Todo:
 - [x] Add geocoding interface to map lat/long to street address
 
